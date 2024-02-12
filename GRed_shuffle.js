@@ -1,4 +1,3 @@
-
 let pass_type = ['█', '█', '▢'];
 
 class GRed_shuffle {
@@ -45,7 +44,9 @@ class GRed_shuffle {
         setTimeout(() => this.delay(1), delay);
     }
 
+
     stop(delay = 0) {
         setTimeout(() => this.delay(0), delay);
     }
+    
 }
