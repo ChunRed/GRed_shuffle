@@ -1,6 +1,6 @@
 let pass_type = ['█', '█', '▢'];
 
-class GRed_shuffle {
+class GText_01 {
 
 
     constructor(HTMLElement) {

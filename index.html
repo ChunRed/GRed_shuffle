@@ -1,87 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
 
-    <!-- <script src="https://cdn.jsdelivr.net/gh/ChunRed/GRed_shuffle@main/index.js"></script> -->
+        <!-- <script src="https://cdn.jsdelivr.net/gh/ChunRed/GRed_shuffle@main/index.js"></script> -->
 
-    <script src="https://cdn.jsdelivr.net/gh/ChunRed/GRed_shuffle@main/GRed_shuffle.js"></script>
-</head> 
+        <script
+            src="https://cdn.jsdelivr.net/gh/ChunRed/GRed_shuffle@main/GText_01.js"></script>
+    </head>
 
+    <body>
+        <div class="test">這些特殊符號是真特殊這些特殊符號是真特殊這些特殊符號是真特殊這些特殊符號是真特殊這些</div>
 
-<body>
-    <div class="test" >這些特殊符號是真特殊符號特殊符號</div>
+        <script>
 
-    <script >
+        let GText_02_type = ['▚', '█', '▙','▖','▟','▞','❚','▛','▜','❘','▖'];
+        
+        class GText_02{
+            constructor(HTMLElement){
+                this.elemant = HTMLElement;
+                this.origin_text = this.elemant.innerHTML.split("");
+                this.new_text = this.elemant.innerHTML.split("");
+                this.setInterval_id = 0;
+                this.animation_count = 0;
+            }
 
-        // let pass_type = '█';
+            animation(trigger){
 
-        // let pass_type = ['█','█','▢'];
+                if(this.animation_count < 100){
+                    this.animation_count += 1;
+                    this.elemant.innerHTML = "";
 
-        // class GRed_shuffle{
+                    for(let i=0; i<this.new_text.length; i++){
+                        if(trigger[i]){
+                            this.new_text[i] = "<span style=\"font-size: "+Math.floor((Math.random() *300) +this.animation_count)+"%\">" + GText_02_type[Math.floor(Math.random() * GText_02_type.length)] + "</span>";
+                        }
+                        this.elemant.innerHTML += this.new_text[i];
+                    }
 
-            
-        //     constructor(HTMLElement){
-        //         this.elemant =  HTMLElement;
-        //         this.origin_text = this.elemant.innerHTML.split("");
-        //         this.new_text = this.elemant.innerHTML.split("");
-        //     }
-            
-        //     fade_in(i){
-        //         this.new_text[i] = pass_type[Math.floor(Math.random() * pass_type.length)];
-        //         this.elemant.innerHTML = "";
-        //         for(let i=0; i<this.new_text.length; i++){
-        //             this.elemant.innerHTML += this.new_text[i];
-        //         }
+                    
+                    
+                }
+                else{
+                    
+                    clearInterval(this.setInterval_id);
+                    this.setInterval_id = 0;
+                    this.animation_count = 0;
+                }
+
                 
-        //     }
 
-        //     fade_out(i){
-        //         this.new_text[i] = this.origin_text[i];
-        //         this.elemant.innerHTML = "";
-        //         for(let i=0; i<this.new_text.length; i++){
-        //             this.elemant.innerHTML += this.new_text[i];
-        //         }
-        //     }
+                // if(this.animation_count < 10){
+                    
+                //     this.animation_count += 1;
 
-        //     delay(flag){
-        //         if(flag == 1){
-        //             for(let i=0; i<this.origin_text.length; i++){
-        //                 this.timeout = setTimeout(() => this.fade_in(i), i*30);
-        //             }
-        //         }
-        //         else if(flag == 0){
-        //             for(let i=0; i<this.origin_text.length; i++){
-        //                 this.timeout = setTimeout(() => this.fade_out(i), i*30);
-        //             }
-        //         }
-        //     }
+                //     this.new_text[index] = "<span style=\"font-size: "+Math.floor(100+this.animation_count)+"%\">" + this.new_text[index] + "</span>";
+                    
+                    
+                // }
+                // else{
+                //     console.log(index);
+                //     clearInterval(this.setInterval_id[index]);
+                //     this.animation_count = 0;
+                //     this.setInterval_id[index] = 0;
+                    
+                // }
 
+                
+                // this.elemant.innerHTML = "";
+                // for(let i=0; i<this.origin_text.length; i++){
+                //     this.elemant.innerHTML += this.new_text[i];
+                    
+                // }
+            }
 
-        //     start(delay=0){
-        //         setTimeout(() => this.delay(1),delay);
-        //     }
+            random(){
+                let trigger=[];
+                for(let i=0; i<this.origin_text.length; i++){
+                    trigger.push(Math.floor(Math.random() * 2));
+                }
 
-        //     stop(delay=0){
-        //         setTimeout(() => this.delay(0),delay);
-        //     }
-        // }
+                this.setInterval_id = setInterval(()=>this. animation(trigger), 40);
+
+                
+            }
+
+        }
 
         let text_path = document.querySelector('.test')
-        let text = new GRed_shuffle(text_path);
-
-        setInterval(function(){
-            text.start(500);
-            text.stop(600);
-        },500);
+        let t02 = new GText_02(text_path);
+        
+        // setInterval(function(){
+        //     t02.random();
+        // }, 1000);
+        t02.random();
         
 
         
     </script>
-</body>
-
-
+    </body>
 
 </html>
