@@ -1,4 +1,4 @@
-let pass_type = ['█', '█', '▢'];
+let pass_type = ['▚', '█▙', '▙','▖','▜','❘','▖','&','$$','#','@','!'];
 
 class GText_01 {
 
@@ -28,6 +28,7 @@ class GText_01 {
 
     delay(flag) {
         if (flag == 1) {
+            
             for (let i = 0; i < this.origin_text.length; i++) {
                 this.timeout = setTimeout(() => this.fade_in(i), i * 30);
             }
@@ -41,6 +42,11 @@ class GText_01 {
 
 
     start(delay = 0) {
+        this.elemant.innerHTML = "";
+        for(let i = 0; i < this.new_text.length; i++){
+            this.new_text[i] = ""
+        }
+        
         setTimeout(() => this.delay(1), delay);
     }
 

@@ -7,12 +7,14 @@
 
         <!-- <script src="https://cdn.jsdelivr.net/gh/ChunRed/GRed_shuffle@main/index.js"></script> -->
 
-        <script
-            src="https://cdn.jsdelivr.net/gh/ChunRed/GRed_shuffle@main/GText_01.js"></script>
+        <!-- <script src="https://cdn.jsdelivr.net/gh/ChunRed/GRed_shuffle@main/GText_01.js"></script> -->
+
+        <script src="/GText_01.js"></script>
+
     </head>
 
     <body>
-        <div class="test">這些特殊符號是真特殊這些特殊符號是真特殊這些特殊符號是真特殊這些特殊符號是真特殊這些</div>
+        <div class="test">這些特殊符號是真</div>
 
         <script>
 
@@ -30,12 +32,12 @@
             animation(trigger){
 
                 if(this.animation_count < 100){
-                    this.animation_count += 1;
+                    this.animation_count += 10;
                     this.elemant.innerHTML = "";
 
                     for(let i=0; i<this.new_text.length; i++){
                         if(trigger[i]){
-                            this.new_text[i] = "<span style=\"font-size: "+Math.floor((Math.random() *300) +this.animation_count)+"%\">" + GText_02_type[Math.floor(Math.random() * GText_02_type.length)] + "</span>";
+                            this.new_text[i] = "<span style=\"font-size: "+Math.floor(100 +this.animation_count)+"%\">" + GText_02_type[Math.floor(Math.random() * GText_02_type.length)] + "</span>";
                         }
                         this.elemant.innerHTML += this.new_text[i];
                     }
@@ -49,53 +51,41 @@
                     this.setInterval_id = 0;
                     this.animation_count = 0;
                 }
-
-                
-
-                // if(this.animation_count < 10){
-                    
-                //     this.animation_count += 1;
-
-                //     this.new_text[index] = "<span style=\"font-size: "+Math.floor(100+this.animation_count)+"%\">" + this.new_text[index] + "</span>";
-                    
-                    
-                // }
-                // else{
-                //     console.log(index);
-                //     clearInterval(this.setInterval_id[index]);
-                //     this.animation_count = 0;
-                //     this.setInterval_id[index] = 0;
-                    
-                // }
-
-                
-                // this.elemant.innerHTML = "";
-                // for(let i=0; i<this.origin_text.length; i++){
-                //     this.elemant.innerHTML += this.new_text[i];
-                    
-                // }
             }
 
-            random(){
+            display(){
                 let trigger=[];
                 for(let i=0; i<this.origin_text.length; i++){
                     trigger.push(Math.floor(Math.random() * 2));
                 }
 
                 this.setInterval_id = setInterval(()=>this. animation(trigger), 40);
+            }
 
-                
+            random(delay){
+                setTimeout(()=>this.display(),delay);
             }
 
         }
-
-        let text_path = document.querySelector('.test')
-        let t02 = new GText_02(text_path);
         
-        // setInterval(function(){
-        //     t02.random();
-        // }, 1000);
-        t02.random();
+        let text_path = document.querySelector('.test')
+        //let t02 = new GText_02(text_path);
+        let t01 = new GText_01(text_path);
+        //t02.random();
+
+        t01.start();
+
+        setTimeout(()=>{
+            let t02 = new GText_02(text_path);
+            t02.random(0);
+        }, 200);
+        
+        t01.stop(1500);
+
+        
+
+        
+        
         
 
         
